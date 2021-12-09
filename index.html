@@ -1,0 +1,202 @@
+<html>
+
+<head>
+    <style>
+        body {
+            text-align: center;
+            background-image: url("Pictures/background.jpg");
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #header {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            padding: 20px;
+            width: auto;
+            height: 150px;
+        }
+
+        #logo {
+            width: auto;
+            margin-left: auto;
+            height: 75%;
+        }
+
+        #header H1 {
+            display: inline;
+            margin: 0;
+            margin-right: auto;
+            font-family: Helvetica;
+        }
+
+        #top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0;
+        }
+
+        #sun {
+            position: relative;
+        }
+
+        #moonTripText {
+            color: black;
+            font-size: 70pt;
+            position: absolute;
+            bottom: 175px;
+            left: 125px;
+        }
+
+        #bullets {
+            margin: 0;
+            margin-left: 50px;
+            font-size: larger;
+        }
+
+        #images {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        #moonPic {
+            height: 200px;
+            width: auto;
+        }
+
+        #rocketPic {
+            margin-bottom: 100px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <title>Banana Space Program</title>
+
+    <div id="header">
+        <img id="logo" src="Pictures/BSP.png" />
+        <h1>Banana Space Program</h1>
+    </div>
+    <div id="top">
+        <div id="sun">
+            <img src="Pictures/trips.png" />
+            <span id="moonTripText"></span>
+
+        </div>
+        <div id="bullets">
+            <p>Today's date is: <span id="todaysDate"></span></p>
+            <button type="button" id="button" onclick="add()">Add</button>
+            <button type="button" id="button" onclick="subtract()">Subtract</button>
+            <p>The Moon is <b>238,855</b> miles away. </p>
+            <p>A Banana travels roughly <b>4,600</b> miles to the UK from the Caribbean.</p>
+            <p>So far, since <span id="date"></span>, TIFS have bought <span id="nanas"></span> bananas. </p>
+            <p>The Bananas have travelled a total <span id="miles"></span> miles to get here.</p>
+
+        </div>
+    </div>
+    <div id="images">
+        <div id="moon">
+            <img id="moonPic" src="Pictures/moon.png" />
+        </div>
+        <div id="rocket">
+            <img id="rocketPic" src="Pictures/RocketPath/10.png" />
+        </div>
+        <div id="earth">
+            <img id="earthPic" src="Pictures/earth.png" />
+        </div>
+    </div>
+    <h5>Created by Mr Berryman and Mr Green</h5>
+    <script>
+        var nanas = 0
+        var nanasToUK = 4800
+
+        var today = new Date()
+        var displayToday = today.toDateString()
+        const start = new Date("12/06/2021")
+        var displayStart = start.toDateString()
+
+        function main() {
+            let loop = new Date(start);
+            while (loop <= today) {
+                nanas = nanas + 4
+                let newDate = loop.setDate(loop.getDate() + 1);
+                loop = new Date(newDate);
+            }
+        }
+        main()
+
+        function display() {
+            //TotalMiles
+            var todaysMiles = nanasToUK * nanas
+
+            //Trips to Moon
+            var moonTrip = 238885
+            var compMoonTrip = todaysMiles / moonTrip
+            var moon = compMoonTrip.toFixed(1);
+
+            todaysMiles = todaysMiles.toLocaleString()
+            document.getElementById("nanas").innerHTML = nanas;
+            document.getElementById("date").innerHTML = displayStart;
+            document.getElementById("miles").innerHTML = todaysMiles;
+            document.getElementById("moonTripText").innerHTML = moon;
+
+             //RocketPath
+        if (moon[2] == 1) {
+            document.getElementById("rocketPic").src = "Pictures/RocketPath/10.png";
+        } else if (moon[2] == 2) {
+            document.getElementById("rocketPic").src = "Pictures/RocketPath/20.png";
+        } else if (moon[2] == 3) {
+            document.getElementById("rocketPic").src = "Pictures/RocketPath/30.png";
+        } else if (moon[2] == 4) {
+            document.getElementById("rocketPic").src = "Pictures/RocketPath/40.png";
+        } else if (moon[2] == 5) {
+            document.getElementById("rocketPic").src = "Pictures/RocketPath/50.png";
+        } else if (moon[2] == 6) {
+            document.getElementById("rocketPic").src = "Pictures/RocketPath/60.png";
+        } else if (moon[2] == 7) {
+            document.getElementById("rocketPic").src = "Pictures/RocketPath/70.png";
+        } else if (moon[2] == 8) {
+            document.getElementById("rocketPic").src = "Pictures/RocketPath/80.png";
+        } else if (moon[2] == 9) {
+            document.getElementById("rocketPic").src = "Pictures/RocketPath/90.png";
+        } else if (moon[2] == 0) {
+            document.getElementById("rocketPic").src = "Pictures/RocketPath/100.png";
+        }
+
+        }
+        display()
+        document.getElementById("todaysDate").innerHTML = displayToday;
+
+       
+
+
+        //AddSubtract
+        function add() {
+            today.setDate(today.getDate() + 1);
+            var displayToday = today.toDateString()
+            document.getElementById("todaysDate").innerHTML = displayToday
+            nanas = nanas + 4
+            display()
+            
+        }
+        function subtract() {
+            today.setDate(today.getDate() - 1);
+            var displayToday = today.toDateString()
+            document.getElementById("todaysDate").innerHTML = displayToday
+            nanas = nanas - 4
+            display()
+        }
+
+    </script>
+</body>
+
+</html>
